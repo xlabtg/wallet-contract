@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "build": "ts-node compile.ts",
+    "pretest": "npm run build",
     "test": "jest --runInBand"
   },
   "license": "MIT",

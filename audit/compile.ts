@@ -3,7 +3,7 @@
 // that a modern compiler rejects. We strip ONLY that pragma line in-memory so
 // the audited logic is compiled verbatim; the source files on disk are untouched.
 import { compileFunc } from '@ton-community/func-js';
-import { readFileSync, writeFileSync } from 'fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
 const FUNC_DIR = join(__dirname, '..', 'func');
@@ -32,6 +32,8 @@ async function compileOne(label: string, mainFile: string) {
 }
 
 export async function compileAll() {
+    // build/ is gitignored, so it is absent on a fresh checkout (e.g. CI) — create it.
+    mkdirSync(BUILD_DIR, { recursive: true });
     const wallet = await compileOne('wallet-v4', 'wallet-v4-code.fc');
     const plugin = await compileOne('subscription', 'simple-subscription-plugin.fc');
     return { wallet, plugin };
