@@ -1,0 +1,43 @@
+name: Security Audit PoC
+
+# Собирает аудируемые контракты и прогоняет PoC-набор аудита в TON Sandbox.
+# Все проверки выполняются локально в эмуляторе — без mainnet/testnet.
+
+on:
+  push:
+    paths:
+      - 'audit/**'
+      - 'func/**'
+      - '.github/workflows/audit.yml'
+  pull_request:
+    paths:
+      - 'audit/**'
+      - 'func/**'
+      - '.github/workflows/audit.yml'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: audit
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: audit/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Compile audited contracts
+        run: npm run build
+
+      - name: Run audit PoC suite
+        run: npm test

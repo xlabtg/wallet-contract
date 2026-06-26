@@ -1,0 +1,8 @@
+# Зависимости и артефакты сборки PoC-харнесса аудита
+node_modules/
+build/
+
+# Логи прогонов (создаются скриптами build/test)
+build.log
+test.log
+*.log
