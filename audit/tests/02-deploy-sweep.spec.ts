@@ -15,7 +15,7 @@ const START = 1_700_000_000;
 // op-1 "deploy and install plugin" sends a body, with sender == wallet). They document the
 // by-design "stray/unexpected funds are forwarded to the beneficiary" behavior, and they also
 // illustrate why the README's "1 Toncoin stays on plugin balance" wording is inaccurate: the
-// reserve constant is only ~0.067 TON (see finding B1). No funds are stolen -- everything goes
+// reserve constant is only ~0.067 TON (see finding F-01). No funds are stolen -- everything goes
 // to the legitimate beneficiary.
 describe('By-design: stray transfers are forwarded to the beneficiary', () => {
     it('BY-DESIGN: an empty-body transfer from a non-wallet sender is forwarded to the beneficiary (not the canonical op-1 deploy)', async () => {
