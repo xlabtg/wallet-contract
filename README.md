@@ -24,3 +24,6 @@ Plugin implements logic of periodic predefined payments to fixed destination add
  while plugin's logic ensures that funds will be sent not more often than desired. Fees are subtracted from transferred amount (payee pays for fees)
  including 1 Toncoin which stays on plugin balance until plugin destruction. Upon subscription destruction, remnants of 1 Toncoins are transferred to 
 destination address.
+
+
+# Web3/DeSci Fix #1: 🔒 Smart Contract Security Audit Request
